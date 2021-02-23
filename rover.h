@@ -12,16 +12,18 @@ enum Direction{
 class Rover{
     private:
         int x,y;
-        Direction heading;
+        Direction direction;
+        char roverSymbol;
         char objectUnderRover;
-        Map *p_mars;
-        Map mapper;
+        Map *p_mars;//points to the real map
+        Map mapper;//map that we actually display
+
 
     public:
     Rover();
     void land(Map &Mars);
-    bool turnLeft();
-    bool turnRight();
+    void turnLeft(Map &Mars);
+    void turnRight(Map &Mars);
     bool move();
     void displayMapper();
     bool executeCommand();

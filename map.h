@@ -9,16 +9,19 @@ class Map{
         int dimX, dimY;
 
     public:
-        Map(int dimx, int dimy);
-        void resize(int dimx, int dimy, char ch);
-        void display();
-        void setObject(int x, int y, char ch);
-        void getObject(int x, int y);
-        bool isEmpty(int x, int y);
-        bool isHill(int x, int y);
-        bool isTrap(int x, int y);
-        bool isInsideMap(int x, int y);
-        int getDiimX();
+        Map(){
+            init();
+        }
+        void init();//done
+        void resize(int new_dimx, int new_dimy, char ch);//not sure what this supposed to do
+        void display();//done but need improvement
+        void setObject(int x, int y, char ch);//done
+        char getObject(int x, int y);//done
+        bool isEmpty(int x, int y);//done
+        bool isHill(int x, int y);//done
+        bool isTrap(int x, int y);//done
+        bool isInsideMap(int x, int y);//done but I want to replace it with something else
+        int getDimX();
         int getDimY();
 };
 
