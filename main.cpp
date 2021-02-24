@@ -15,15 +15,12 @@ int main(){
     Map Mars;
     Rover Curiosity(Mars);
 
-   
-    Mars.display();
-
-    Curiosity.land(Mars);
-    Mars.display();
-    Curiosity.turnLeft(Mars);
-    Mars.display();
-    Curiosity.turnRight(Mars);
-    Mars.display();
+    Curiosity.land();
+    Curiosity.displayMapper();
+    //Curiosity.move();
+    Curiosity.executeCommand();
+    Curiosity.displayMapper();
+    
 
     return 0;
 }

@@ -80,17 +80,6 @@ void Map::display(){
 
     cout<<endl<<endl;
 
-    cout<<"Misssion: Get all the golds!! Do not get trapped!!"<<endl;
-    cout<<"L = Turn Left, R = Turn Right, M = Move, Q = Quit"<<endl;
-    cout<<"@ = Hill, # = Trap, * = Gold"<<endl<<endl;
-
-    cout<<"Total Command Sequences = 0 [S]"<<endl;
-    cout<<"Total Commands = 0 [C]"<<endl;
-    cout<<"Total Golds = 0 [G]"<<endl;
-    cout<<"Total Score = [G] X 50 - [S] X 5 - [C] X 1 = 0"<<endl<<endl;
-    
-    cout<<"Example Sequence: LMMLMLMLMLMLMLMLMLMLMLMML"<<endl;
-    cout<<"Enter command sequence: "<<endl;
 }
 
 //set the object at coordinate x,y
@@ -118,6 +107,16 @@ bool Map::isEmpty(int x, int y){
 
 //check for hill
 bool Map::isHill(int x, int y){
+
+    //This piece check for hill in the next cell
+    if(x>15)
+        x =1;
+    if(y>10)
+        y=1;
+    if(x<1)
+        x=15;
+    if(y<1)
+        y=10;
 
     if (map[dimY-y][x-1] =='@')
         return true;

@@ -17,16 +17,22 @@ class Rover{
         char objectUnderRover;
         Map *p_mars;//points to the real map
         Map mapper;//map that we actually display
+        int gold;
+        int score;
+        int numOfMoves;
+        string command;
+        int totalCommand, totalCommandSequence;
 
 
     public:
-    Rover();
-    void land(Map &Mars);
-    void turnLeft(Map &Mars);
-    void turnRight(Map &Mars);
-    bool move();
+    Rover(Map &Mars);
+    void land();//done
+    void turnLeft();//done
+    void turnRight();//done
+    void move();//add check for hills
     void displayMapper();
-    bool executeCommand();
+
+    void executeCommand();
 };
 
 
