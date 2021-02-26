@@ -1,11 +1,5 @@
-#include<iostream>
-#include<iomanip>
-#include<cstdlib>
-#include<string>
-#include<vector>
-#include<ctime>
-#include<unistd.h>
 #include "rover.h"
+#include "include.h"
 
 using namespace std;
 
@@ -94,7 +88,7 @@ void Rover::move(){
     case '^':
         //check for hills
         if(p_mars->isHill(x, (y+1)%10)){
-        cout<<"You can't go over a hill\n";
+        hillFlag = true;
         break;
         }
         if(p_mars->isInsideMap(x,y+1))
@@ -105,7 +99,7 @@ void Rover::move(){
     case '>':
         //check for hills
         if(p_mars->isHill(x+1, y)){
-        cout<<"You can't go over a hill\n";
+        hillFlag = true;
         break;
         }
         if(p_mars->isInsideMap(x+1,y))
@@ -116,7 +110,7 @@ void Rover::move(){
     case 'V':
         //check for hills
         if(p_mars->isHill(x, y-1)){
-        cout<<"You can't go over a hill\n";
+        hillFlag = true;
         break;
         }
         if(p_mars->isInsideMap(x,y-1))
@@ -127,7 +121,7 @@ void Rover::move(){
     case '<':
         //check for hills
         if(p_mars->isHill(x-1, y)){
-        cout<<"You can't go over a hill\n";
+        hillFlag = true;
         break;
         }
         if(p_mars->isInsideMap(x-1,y))
@@ -159,6 +153,11 @@ void Rover::executeCommand(){
     cout<<"Total Score = [G] X 50 - [S] X 5 - [C] X 1 = "<<score<<endl<<endl;
     
     cout<<"Example Sequence: LMMLMLMLMLMLMLMLMLMLMLMML"<<endl;
+
+    if(hillFlag == true){
+        cout<<"You can't go over a hill!!"<<endl;
+        hillFlag = false;
+    }
 
     cout<<"Enter command sequence: ";
     cin>>command;

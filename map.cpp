@@ -1,11 +1,6 @@
-#include<iostream>
-#include<iomanip>
-#include<cstdlib>
-#include<string>
-#include<vector>
-#include<ctime>
-#include<unistd.h>
+#include "include.h"
 #include "map.h"
+
 using namespace std;
 
 //Function that is called by the constructor

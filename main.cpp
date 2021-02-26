@@ -1,10 +1,4 @@
-#include<iostream>
-#include<iomanip>
-#include<cstdlib>
-#include<string>
-#include<vector>
-#include<ctime>
-#include<unistd.h>
+#include "include.h"
 #include "map.h"
 #include "rover.h"
 
@@ -20,6 +14,7 @@ int main(){
     //Curiosity.move();
     Curiosity.executeCommand();
     Curiosity.displayMapper();
+    Curiosity.executeCommand();
     
 
     return 0;

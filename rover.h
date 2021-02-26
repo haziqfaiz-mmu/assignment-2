@@ -1,6 +1,7 @@
 #ifndef ROVER_H
 #define ROVER_H
 #include "map.h"
+#include "include.h"
 
 enum Direction{
     north = 0,
@@ -22,6 +23,7 @@ class Rover{
         int numOfMoves;
         string command;
         int totalCommand, totalCommandSequence;
+        bool hillFlag;
 
 
     public:
