@@ -13,16 +13,19 @@ class Map{
             init();
         }
         void init();//done
-        void resize(int new_dimx, int new_dimy, char ch);//not sure what this supposed to do
+        void resize(int new_dimx, int new_dimy, char ch);
+        void emptyMap();//empty the map, used for the mapper
         void display();//done but need improvement
         void setObject(int x, int y, char ch);//done
         char getObject(int x, int y);//done
         bool isEmpty(int x, int y);//done
+        bool isGold(int x, int y);//done
         bool isHill(int x, int y);//done
         bool isTrap(int x, int y);//done
+        bool isBooster(int x, int y);
         bool isInsideMap(int x, int y);//done but I want to replace it with something else
-        int getDimX();
-        int getDimY();
+        int getDimX();//done
+        int getDimY();//done
 };
 
 #endif

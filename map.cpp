@@ -77,8 +77,28 @@ void Map::display(){
 
 }
 
+//empty the map
+void Map::emptyMap(){
+    for(int i=0;i<dimY; ++i){
+        for(int j=0; j<dimX; ++j){
+            map[i][j] = ' ';
+        }
+    }
+}
+
+
 //set the object at coordinate x,y
 void Map::setObject(int x, int y, char ch){
+
+    //This piece set object in the next cell
+    if(x>15)
+        x =1;
+    if(y>10)
+        y=1;
+    if(x<1)
+        x=15;
+    if(y<1)
+        y=10;
 
     map[(dimY-y)][x-1] = ch;
 }
@@ -99,7 +119,15 @@ bool Map::isEmpty(int x, int y){
     else
         return false;
 }
+//check for gold
+bool Map::isGold(int x, int y){
 
+    if (map[dimY-y][x-1] =='$')
+        return true;
+    
+    else
+        return false;
+}
 //check for hill
 bool Map::isHill(int x, int y){
 
@@ -124,6 +152,16 @@ bool Map::isHill(int x, int y){
 bool Map::isTrap(int x, int y){
 
     if (map[dimY-y][x-1] =='#')
+        return true;
+    
+    else
+        return false;
+}
+
+//check for booster
+bool Map::isBooster(int x, int y){
+
+    if (map[dimY-y][x-1] =='X')
         return true;
     
     else

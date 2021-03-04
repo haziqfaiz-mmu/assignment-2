@@ -21,18 +21,23 @@ class Rover{
         int gold;
         int score;
         int numOfMoves;
+        int availableMoves;
         string command;
-        int totalCommand, totalCommandSequence;
+        int totalCommandSequence;
         bool hillFlag;
 
 
     public:
-    Rover(Map &Mars);
+    Rover(Map &Mars);//constructor that accept reference to the map
     void land();//done
+    void markMap(int x, int y);//mark the mapper with 'I' after visited by rover
     void turnLeft();//done
     void turnRight();//done
-    void move();//add check for hills
+    void move();//done
+    void displayRealMap();//done
     void displayMapper();
+    int calcScore(int gold, int totalCommandSequence, int moves);//done
+    int getAvailableMoves();
 
     void executeCommand();
 };
