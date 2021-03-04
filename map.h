@@ -18,6 +18,7 @@ class Map{
         void display();//done but need improvement
         void setObject(int x, int y, char ch);//done
         char getObject(int x, int y);//done
+        char getObjectArray(int x, int y);//return char in map but not confusing
         bool isEmpty(int x, int y);//done
         bool isGold(int x, int y);//done
         bool isHill(int x, int y);//done

@@ -8,15 +8,14 @@ int main(){
 
     Map Mars;
     Rover Curiosity(Mars);
-    int i{0};
+    int i{0},j{0};
 
     Curiosity.land();
-    Curiosity.displayMapper();
-    while(i<100){
-    Curiosity.move();++i;}
-    Curiosity.displayMapper();
-    Curiosity.executeCommand();
     
+    while(Curiosity.getAvailableMoves() > 0){
+        Curiosity.displayMapper();
+        Curiosity.executeCommand();
+    }
     
     
 

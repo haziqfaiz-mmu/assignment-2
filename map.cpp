@@ -42,6 +42,7 @@ void Map::display(){
     cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl;
     cout<<setw(15)<<" "<<"= Curiosity, welcome to Mars! ="<<endl;
     cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl<<endl;
+
     for(int i=0; i<dimY; ++i){
     cout<<" ";
         for(int j=0;j<2*dimX; ++j){
@@ -106,8 +107,23 @@ void Map::setObject(int x, int y, char ch){
 //get the object in coordinate x,y
 char Map::getObject(int x, int y){
 
+    if(x>15)
+        x =1;
+    if(y>10)
+        y=1;
+    if(x<1)
+        x=15;
+    if(y<1)
+        y=10;
+
     char obj =map[dimY-y][x-1];
         return obj;
+}
+
+//get obect but use index notation
+char Map::getObjectArray(int x, int y){
+
+    return map[x][y];
 }
 
 //check whether the cell is empty

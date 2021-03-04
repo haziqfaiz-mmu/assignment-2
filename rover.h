@@ -37,6 +37,7 @@ class Rover{
     void displayRealMap();//done
     void displayMapper();
     int calcScore(int gold, int totalCommandSequence, int moves);//done
+    int getScore();
     int getAvailableMoves();
 
     void executeCommand();

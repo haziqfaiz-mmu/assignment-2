@@ -106,8 +106,8 @@ void Rover::move(){
     case '^':
         //check for hills
         if(p_mars->isHill(x, (y+1)%10)){
-        hillFlag = true;
-        break;
+            hillFlag = true;
+            break;
         }
         //check if inside map before moving
         if(p_mars->isInsideMap(x,y+1))
@@ -131,14 +131,14 @@ void Rover::move(){
     case '>':
         //check for hills before moving
         if(p_mars->isHill(x+1, y)){
-        hillFlag = true;
-        break;
+            hillFlag = true;
+            break;
         }
         //check if inside map before moving
         if(p_mars->isInsideMap(x+1,y))
-        x =x+1;
+            x =x+1;
         else
-        x = 1;
+            x = 1;
         //increment number of moves
         numOfMoves = numOfMoves +1;
         //decrease number of moves avaiable
@@ -156,14 +156,14 @@ void Rover::move(){
     case 'V':
         //check for hills
         if(p_mars->isHill(x, y-1)){
-        hillFlag = true;
-        break;
+            hillFlag = true;
+            break;
         }
         //check if inside map before moving
         if(p_mars->isInsideMap(x,y-1))
-        y=y-1;
+            y=y-1;
         else
-        y = 10;
+            y = 10;
         //increment number of moves
         numOfMoves = numOfMoves +1;
         //decrease number of moves avaiable
@@ -181,14 +181,14 @@ void Rover::move(){
     case '<':
         //check for hills
         if(p_mars->isHill(x-1, y)){
-        hillFlag = true;
-        break;
+            hillFlag = true;
+            break;
         }
         //check if inside map before moving
         if(p_mars->isInsideMap(x-1,y))
-        x=x-1;
+            x=x-1;
         else
-        x = 15;
+            x = 15;
         //increment number of moves
         numOfMoves = numOfMoves +1;
         //decrease number of moves avaiable
@@ -218,9 +218,55 @@ void Rover::displayRealMap(){
     p_mars->display();
 }
 
-//display the player map containedd in the mapper object
+//display the player map contained in the mapper object
 void Rover::displayMapper(){
-    mapper.display();
+    
+    //system("cls");
+    cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl;
+    cout<<setw(15)<<" "<<"= Curiosity, welcome to Mars! ="<<endl;
+    cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl<<endl;
+
+    for(int i=0; i<mapper.getDimY(); ++i){
+    cout<<" ";
+        for(int j=0;j<2*mapper.getDimX(); ++j){
+            cout<<"+-";
+        }
+        cout<<"+"<<endl;
+        cout<<setw(2)<<(mapper.getDimY()-i);
+
+        for(int j=0; j<mapper.getDimX();++j){
+            if(mapper.getObjectArray(i,j) == 'I')
+                cout<<"| "<<p_mars->getObjectArray(i,j)<<" ";
+
+            else
+                cout<<"| "<<'?'<<" ";
+        }
+        cout<<"|"<<endl;
+    }
+
+    cout<<" ";
+    for(int j=0;j<2*mapper.getDimX();++j){
+        cout<<"+-";
+    }
+    cout<<"+"<<endl;
+
+    cout<<" ";
+    for(int j=0; j<mapper.getDimX(); ++j){
+        int digit = (j+1);
+        cout<<" ";
+        if(digit==0)
+            cout<<" ";
+        else
+            cout<<setw(3)<<digit;
+    }
+    cout<<endl;
+
+    cout<<endl<<endl;
+}
+
+//get the current score
+int Rover::getScore(){
+    return score;
 }
 
 //get the number of available moves
