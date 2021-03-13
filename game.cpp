@@ -98,8 +98,8 @@ void Game::success(){
     cout         <<"     8    8   8  8         8         8                8        8"<<endl;
     cout         <<"888888    88888  88888888  88888888  88888888  88888888 88888888"<<WHITE<<endl;
 
-    cout<<"You collected ALL the golds on Mars"<<endl;
-    cout<<"Mission Succesfull!!!"<<endl;
+    cout<<setw(50)<<"You collected ALL the golds on Mars"<<endl;
+    cout<<setw(50)<<"Mission Succesfull!!!"<<endl;
 
 }
 
