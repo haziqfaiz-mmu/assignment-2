@@ -15,12 +15,16 @@ int main(){
     Curiosity.land();
     game.startsequence();
     
-    while(Curiosity.getAvailableMoves() > 0 && Curiosity.getCommandFlag()){
+    while(Curiosity.getAvailableMoves() > 0 && Curiosity.getCommandFlag() && Curiosity.getRemainingGold()!=0){
         Curiosity.displayMapper();
         Curiosity.executeCommand();
     }
 
-    game.gameOverSequence(Curiosity.getScore());
+    if(Curiosity.getRemainingGold() == 0)
+        game.successSequence(Curiosity.getScore());
+    else
+        game.gameOverSequence(Curiosity.getScore());
+
     game.displayRealMap();
     
     return 0;

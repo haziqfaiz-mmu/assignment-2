@@ -19,6 +19,7 @@ class Rover{
         Map *p_mars;//points to the real map
         Map mapper;//map that we actually display
         int gold;
+        int totalGoldInMap{0};
         int score;
         int numOfMoves;
         int availableMoves;
@@ -27,6 +28,7 @@ class Rover{
         bool hillFlag;
         bool trapFlag;
         bool commandFlag{true};
+        bool allGoldCollectedFlag;
 
 
     public:
@@ -42,6 +44,9 @@ class Rover{
     int getScore();
     int getAvailableMoves();
     bool getCommandFlag();
+    int getTotalGoldInMap();
+    int getRemainingGold();
+    bool setAllGoldCollectedFlag();
 
     void executeCommand();
 };

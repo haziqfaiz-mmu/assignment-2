@@ -10,6 +10,8 @@ class Game{
         void EndingLights(int x);
         void gameOver();
         void gameOverSequence(int x);
+        void success();
+        void successSequence(int x);
         void displayRealMap();
         Game(Map &mars);
     private:

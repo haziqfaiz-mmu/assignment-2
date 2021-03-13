@@ -12,6 +12,7 @@ Rover::Rover(Map &Mars){
     numOfMoves = 0;
     totalCommandSequence = 0;
     mapper.emptyMap();
+    getTotalGoldInMap();
 }
 
 void Rover::land(){
@@ -119,8 +120,10 @@ void Rover::move(){
         //decrease number of moves avaiable
         availableMoves  = availableMoves -1;
         //check for gold after the rover moved
-        if(p_mars->isGold(x,y))
+        if(p_mars->isGold(x,y)){
             gold = gold+1;
+            totalGoldInMap = totalGoldInMap -1;
+            }   
         //check for booster after the rover moved
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
@@ -147,8 +150,10 @@ void Rover::move(){
         //decrease number of moves avaiable
         availableMoves  = availableMoves -1;
         //check for gold after the rover moved
-        if(p_mars->isGold(x,y))
+        if(p_mars->isGold(x,y)){
             gold = gold+1;
+            totalGoldInMap = totalGoldInMap -1;
+            }   
         //check for booster after the rover moved
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
@@ -175,8 +180,10 @@ void Rover::move(){
         //decrease number of moves avaiable
         availableMoves  = availableMoves -1;
         //check for gold after the rover moved
-        if(p_mars->isGold(x,y))
+        if(p_mars->isGold(x,y)){
             gold = gold+1;
+            totalGoldInMap = totalGoldInMap -1;
+            }   
         //check for booster after the rover moved
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
@@ -203,8 +210,10 @@ void Rover::move(){
         //decrease number of moves avaiable
         availableMoves  = availableMoves -1;
         //check for gold after the rover moved
-        if(p_mars->isGold(x,y))
+        if(p_mars->isGold(x,y)){
             gold = gold+1;
+            totalGoldInMap = totalGoldInMap -1;
+            }   
         //check for booster after the rover moved
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
@@ -316,7 +325,24 @@ bool Rover::getCommandFlag(){
     return commandFlag;
 }
 
+//get the total number of gold spawned in the map
+int Rover::getTotalGoldInMap(){
 
+    for(int i=0;i<mapper.getDimY();++i){
+        for(int j=0;j<mapper.getDimX();++j){
+            if(p_mars->getObjectArray(i,j) == '$')
+                totalGoldInMap++;
+        }
+    }
+    return totalGoldInMap;
+}
+
+//get remaining gold in the map
+int Rover::getRemainingGold(){
+    return totalGoldInMap;
+}
+
+//execute command after asking input from player
 void Rover::executeCommand(){
 
     cout<<"Misssion: Get all the golds!! Remember traps will cost you 10 move points!!"<<endl;
@@ -328,6 +354,7 @@ void Rover::executeCommand(){
     cout<<"Total Golds = "<<BOLDBLUE<<gold<<WHITE<<" [G]\t\t\t";
     cout<<"Total Score = [G] X 50 - [S] X 5 - [C] X 1 = "<<BOLDBLUE<<score<<WHITE<<endl;
     cout<<"Total Available Moves ="<<BOLDBLUE<<availableMoves<<WHITE<<endl<<endl;
+    cout<<"Total Gold Left ="<<BOLDBLUE<<totalGoldInMap<<WHITE<<endl<<endl;
     
     cout<<"Example Sequence: LMMMLRLLMRMLRLRLMLRMLR"<<endl;
 
