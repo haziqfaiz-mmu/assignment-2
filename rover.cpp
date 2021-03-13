@@ -125,8 +125,11 @@ void Rover::move(){
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
         //check for trap after the rover moved
-        if(p_mars->isTrap(x,y))
+        if(p_mars->isTrap(x,y)){
             availableMoves = availableMoves - 10;
+            trapFlag = true;
+            break;}
+
         break;
     case '>':
         //check for hills before moving
@@ -150,8 +153,11 @@ void Rover::move(){
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
         //check for trap after the rover moved
-        if(p_mars->isTrap(x,y))
+        if(p_mars->isTrap(x,y)){
             availableMoves = availableMoves - 10;
+            trapFlag = true;
+            break;}
+
         break;
     case 'V':
         //check for hills
@@ -175,8 +181,11 @@ void Rover::move(){
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
         //check for trap after the rover moved
-        if(p_mars->isTrap(x,y))
+        if(p_mars->isTrap(x,y)){
             availableMoves = availableMoves - 10;
+            trapFlag = true;
+            break;}
+            
         break;
     case '<':
         //check for hills
@@ -200,8 +209,10 @@ void Rover::move(){
         if(p_mars->isBooster(x,y))
             availableMoves = availableMoves+5;
         //check for trap after the rover moved
-        if(p_mars->isTrap(x,y))
+        if(p_mars->isTrap(x,y)){
             availableMoves = availableMoves - 10;
+            trapFlag = true;
+            break;}
 
         break;
     }
@@ -221,34 +232,53 @@ void Rover::displayRealMap(){
 //display the player map contained in the mapper object
 void Rover::displayMapper(){
     
-    //system("cls");
-    cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl;
-    cout<<setw(15)<<" "<<"= Curiosity, welcome to Mars! ="<<endl;
-    cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl<<endl;
+    system("clear");
 
     for(int i=0; i<mapper.getDimY(); ++i){
     cout<<" ";
         for(int j=0;j<2*mapper.getDimX(); ++j){
-            cout<<"+-";
+            cout<<BOLDRED<<"+-"<<WHITE;
         }
-        cout<<"+"<<endl;
+        cout<<BOLDRED<<"+"<<WHITE<<endl;
         cout<<setw(2)<<(mapper.getDimY()-i);
 
         for(int j=0; j<mapper.getDimX();++j){
-            if(mapper.getObjectArray(i,j) == 'I')
-                cout<<"| "<<p_mars->getObjectArray(i,j)<<" ";
+            if(mapper.getObjectArray(i,j) == 'I'){
+                if(p_mars->getObjectArray(i,j) == '$'){
+                    cout<<BOLDRED<<"| "<<BOLDYELLOW<<p_mars->getObjectArray(i,j)<<WHITE<<" ";
+                }
+
+                else if(p_mars->getObjectArray(i,j) == '@'){
+                    cout<<BOLDRED<<"| "<<BOLDMAGENTA<<p_mars->getObjectArray(i,j)<<WHITE<<" ";
+                }
+
+                else if(p_mars->getObjectArray(i,j) == 'X'){
+                    cout<<BOLDRED<<"| "<<BOLDGREEN<<p_mars->getObjectArray(i,j)<<WHITE<<" ";
+                }
+
+                else if(p_mars->getObjectArray(i,j) == '#'){
+                    cout<<BOLDRED<<"| "<<RED<<p_mars->getObjectArray(i,j)<<WHITE<<" ";
+                }
+
+                else if(p_mars->getObjectArray(i,j) == '<'||p_mars->getObjectArray(i,j) == '^'||p_mars->getObjectArray(i,j) == '>'||p_mars->getObjectArray(i,j) == 'V'){
+                    cout<<BOLDRED<<"| "<<BOLDBLUE<<p_mars->getObjectArray(i,j)<<WHITE<<" ";
+                }
+
+                else
+                    cout<<BOLDRED<<"| "<<WHITE<<p_mars->getObjectArray(i,j)<<" ";
+            }
 
             else
-                cout<<"| "<<'?'<<" ";
+                cout<<BOLDRED<<"| "<<WHITE<<'?'<<WHITE<<" ";
         }
-        cout<<"|"<<endl;
+        cout<<BOLDRED<<"|"<<WHITE<<endl;
     }
 
     cout<<" ";
     for(int j=0;j<2*mapper.getDimX();++j){
-        cout<<"+-";
+        cout<<BOLDRED<<"+-"<<WHITE;
     }
-    cout<<"+"<<endl;
+    cout<<BOLDRED<<"+"<<WHITE<<endl;
 
     cout<<" ";
     for(int j=0; j<mapper.getDimX(); ++j){
@@ -281,31 +311,41 @@ int Rover::calcScore(int gold, int totalCommandSequence, int moves){
     return score;
 }
 
+//get command flag to know when to stop
+bool Rover::getCommandFlag(){
+    return commandFlag;
+}
+
 
 void Rover::executeCommand(){
 
-    cout<<"Misssion: Get all the golds!! Do not get trapped!!"<<endl;
+    cout<<"Misssion: Get all the golds!! Remember traps will cost you 10 move points!!"<<endl;
     cout<<"L = Turn Left, R = Turn Right, M = Move, Q = Quit"<<endl;
-    cout<<"@ = Hill, # = Trap, * = Gold"<<endl<<endl;
+    cout<<BOLDMAGENTA<<"@"<<WHITE<< " = Hill, "<<RED<<"#"<<WHITE<<" = Trap, "<<BOLDYELLOW<<"$"<<WHITE<<" = Gold, "<<"Booster ="<<BOLDGREEN<<" X"<<WHITE<<endl<<endl;
 
-    cout<<"Total Command Sequences =  "<<totalCommandSequence<<" [S]"<<endl;
-    cout<<"Total Commands = "<<numOfMoves<<" [C]"<<endl;
-    cout<<"Total Golds = "<<gold<<" [G]"<<endl;
-    cout<<"Total Score = [G] X 50 - [S] X 5 - [C] X 1 = "<<score<<endl;
-    cout<<"Total Available Moves ="<<availableMoves<<endl<<endl;
+    cout<<"Total Command Sequences =  "<<BOLDBLUE<<totalCommandSequence<<WHITE<<" [S]\t\t\t";
+    cout<<"Total Commands = "<<BOLDBLUE<<numOfMoves<<WHITE<<" [C]"<<endl;
+    cout<<"Total Golds = "<<BOLDBLUE<<gold<<WHITE<<" [G]\t\t\t";
+    cout<<"Total Score = [G] X 50 - [S] X 5 - [C] X 1 = "<<BOLDBLUE<<score<<WHITE<<endl;
+    cout<<"Total Available Moves ="<<BOLDBLUE<<availableMoves<<WHITE<<endl<<endl;
     
-    cout<<"Example Sequence: LMMLMLMLMLMLMLMLMLMLMLMML"<<endl;
+    cout<<"Example Sequence: LMMMLRLLMRMLRLRLMLRMLR"<<endl;
 
     if(hillFlag == true){
-        cout<<"You can't go over a hill!!"<<endl;
+        cout<<RED<<"You can't go over a hill!!"<<WHITE<<endl;
         hillFlag = false;
+    }
+
+    if(trapFlag == true){
+        cout<<RED<<"You hit a trap!! This will cost you 10 move points"<<WHITE<<endl;
+        trapFlag = false;
     }
 
     cout<<"Enter command sequence: ";
     cin>>command;
 
     char *ch = &command[0];
-    
+
     while(*ch!='\0'){
 
         switch (*ch)
@@ -318,6 +358,9 @@ void Rover::executeCommand(){
             break;
         case 'R':
             turnRight();
+            break;
+        case 'Q':
+            commandFlag = false;
             break;
         default:
             break;

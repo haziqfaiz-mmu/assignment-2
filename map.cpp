@@ -38,7 +38,7 @@ void Map::resize(int new_dimX, int new_dimY, char ch){
 //display the map
 void Map::display(){
 
-    //system("cls");
+    system("clear");
     cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl;
     cout<<setw(15)<<" "<<"= Curiosity, welcome to Mars! ="<<endl;
     cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl<<endl;
@@ -46,22 +46,46 @@ void Map::display(){
     for(int i=0; i<dimY; ++i){
     cout<<" ";
         for(int j=0;j<2*dimX; ++j){
-            cout<<"+-";
+            cout<<BOLDRED<<"+-"<<WHITE;
         }
-        cout<<"+"<<endl;
+        cout<<BOLDRED<<"+"<<WHITE<<endl;
         cout<<setw(2)<<(dimY-i);
 
         for(int j=0; j<dimX;++j){
-            cout<<"| "<<map[i][j]<<" ";
+        
+                if(map[i][j] == '$'){
+                    cout<<BOLDRED<<"| "<<BOLDYELLOW<<map[i][j]<<WHITE<<" ";
+                }
+
+                else if(map[i][j] == '@'){
+                    cout<<BOLDRED<<"| "<<BOLDMAGENTA<<map[i][j]<<WHITE<<" ";
+                }
+
+                else if(map[i][j]== 'X'){
+                    cout<<BOLDRED<<"| "<<BOLDGREEN<<map[i][j]<<WHITE<<" ";
+                }
+
+                else if(map[i][j] == '#'){
+                    cout<<BOLDRED<<"| "<<RED<<map[i][j]<<WHITE<<" ";
+                }
+
+                else if(map[i][j] == '<'||map[i][j] == '^'||map[i][j] == '>'||map[i][j] == 'V'){
+                    cout<<BOLDRED<<"| "<<BOLDBLUE<<map[i][j]<<WHITE<<" ";
+                }
+
+                else
+                    cout<<BOLDRED<<"| "<<WHITE<<map[i][j]<<" ";
+         
         }
-        cout<<"|"<<endl;
+        
+        cout<<BOLDRED<<"|"<<WHITE<<endl;
     }
 
     cout<<" ";
     for(int j=0;j<2*dimX;++j){
-        cout<<"+-";
+        cout<<BOLDRED<<"+-"<<WHITE;
     }
-    cout<<"+"<<endl;
+    cout<<BOLDRED<<"+"<<WHITE<<endl;
 
     cout<<" ";
     for(int j=0; j<dimX; ++j){

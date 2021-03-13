@@ -25,6 +25,8 @@ class Rover{
         string command;
         int totalCommandSequence;
         bool hillFlag;
+        bool trapFlag;
+        bool commandFlag{true};
 
 
     public:
@@ -39,6 +41,7 @@ class Rover{
     int calcScore(int gold, int totalCommandSequence, int moves);//done
     int getScore();
     int getAvailableMoves();
+    bool getCommandFlag();
 
     void executeCommand();
 };
