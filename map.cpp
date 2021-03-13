@@ -39,9 +39,6 @@ void Map::resize(int new_dimX, int new_dimY, char ch){
 void Map::display(){
 
     system("clear");
-    cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl;
-    cout<<setw(15)<<" "<<"= Curiosity, welcome to Mars! ="<<endl;
-    cout<<setw(15)<<" "<<"--__--__--__--__--__--__--__--_"<<endl<<endl;
 
     for(int i=0; i<dimY; ++i){
     cout<<" ";
