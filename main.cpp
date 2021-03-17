@@ -10,7 +10,7 @@ Email of Student #1:1201302740@student.mmu.edu.my
 Phone of Student #1:0132061817
 Name of Student #2 : KAVIILASAN A/L GANESAN
 ID of Student #2: 1181103578
-Email of Student #2:1181103578
+Email of Student #2:1181103578@student.mmu.edu.my
 Phone of Student #2:016-2632704
 ********************************************/
 #include "include.h"
